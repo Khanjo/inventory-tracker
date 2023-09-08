@@ -19,7 +19,7 @@ Item.propTypes = {
     quantity: PropTypes.number.isRequired,
     price: PropTypes.number.isRequired,
     id: PropTypes.string,
-    whenTicketClicked: PropTypes.func
+    whenItemClicked: PropTypes.func
 };
 
 export default Item;
