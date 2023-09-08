@@ -4,9 +4,9 @@ import PropTypes from "prop-types";
 function Item(props) {
     return (
         <React.Fragment>
-            <div onClick={() => props.whenItemClicked(props.id)}>
+            <div className="item" onClick={() => props.whenItemClicked(props.id)}>
                 <h3>{props.name}</h3>
-                <p>{props.quantity}</p>
+                <p>{props.description}</p>
                 <p>{props.price}</p>
             </div>
         </React.Fragment>

@@ -6,3 +6,12 @@ body {
   text-align: center;
   color: antiquewhite;
 }
+
+.item {
+  font-size: larger;
+  color: antiquewhite;
+}
+
+hr {
+  border-color: rgb(152, 196, 86);
+}
