@@ -19,6 +19,7 @@ function ItemForms(props) {
                 <input
                     type="number"
                     name="price"
+                    step={.01}
                     placeholder="Price /ounce" />
                 <button type="submit">{props.buttonText}</button>
             </form>
