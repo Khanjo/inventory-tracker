@@ -55,6 +55,14 @@ class Store extends React.Component {
         });
     }
 
+    handleDeletingItem = (id) => {
+        const newMainItemList = this.state.mainItemList.filter(item => item.id !== id);
+        this.setState({
+            mainItemList: newMainItemList,
+            selectedItem: null
+        });
+    }
+
     render() {
         let currentlyVisibleState = null;
         let buttonText = null;
