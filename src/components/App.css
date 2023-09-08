@@ -15,3 +15,11 @@ body {
 hr {
   border-color: rgb(152, 196, 86);
 }
+
+.details {
+  color: antiquewhite;
+}
+
+.detaildescription {
+  font-size: larger;
+}

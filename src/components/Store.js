@@ -2,6 +2,7 @@ import React from "react";
 import Inventory from "./Inventory";
 import NewItemForm from "./NewItemForm";
 import EditItemForm from "./EditItemForm";
+import ItemDetail from "./ItemDetail";
 
 class Store extends React.Component {
 
@@ -34,6 +35,26 @@ class Store extends React.Component {
         this.setState({ mainItemList: newMainItemList, newItemForm: false });
     }
 
+    handleSelectedItem = (id) => {
+        const selectedItem = this.state.mainItemList.filter(item => item.id === id)[0];
+        this.setState({ selectedItem: selectedItem });
+    }
+
+    handleEditClick = () => {
+        this.setState({ editItemForm: true });
+    }
+
+    handleEditingItem = (itemToEdit) => {
+        const editedMainItemList = this.state.mainItemList
+            .filter(item => item.id !== this.state.selectedItem.id)
+            .concat(itemToEdit);
+        this.setState({
+            mainItemList: editedMainItemList,
+            editItemForm: false,
+            selectedItem: null
+        });
+    }
+
     render() {
         let currentlyVisibleState = null;
         let buttonText = null;
@@ -41,12 +62,13 @@ class Store extends React.Component {
             currentlyVisibleState = <EditItemForm item={this.state.selectedItem} onEditItem={this.handleEditingItem} />;
             buttonText = "Return to inventory";
         } else if (this.state.selectedItem != null) {
-
+            currentlyVisibleState = <ItemDetail item={this.state.selectedItem} onClickingDelete={this.handleDeletingItem} onClickingEdit={this.handleEditClick} />
+            buttonText = "Return to inventory";
         } else if (this.state.newItemForm) {
             currentlyVisibleState = <NewItemForm onNewItemCreation={this.handleAddingItem} />;
             buttonText = "Return to inventory";
         } else {
-            currentlyVisibleState = <Inventory itemList={this.state.mainItemList} onItemSelection={this.handleSelectedTicket} />;
+            currentlyVisibleState = <Inventory itemList={this.state.mainItemList} onItemSelection={this.handleSelectedItem} />;
             buttonText = "Add Item"
         }
         return (
