@@ -12,8 +12,10 @@ function ItemDetail(props) {
     };
 
     const handleReduceQuantity = () => {
-        const newItem = reduceQuantity(item, 1);
-        return newItem
+        if (item.quantity > 0) {
+            const newItem = reduceQuantity(item, 1);
+            return newItem;
+        }
     };
 
     return (
