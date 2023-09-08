@@ -67,17 +67,27 @@ class Store extends React.Component {
         let currentlyVisibleState = null;
         let buttonText = null;
         if (this.state.editItemForm) {
-            currentlyVisibleState = <EditItemForm item={this.state.selectedItem} onEditItem={this.handleEditingItem} />;
+            currentlyVisibleState =
+                <EditItemForm
+                    item={this.state.selectedItem}
+                    onEditItem={this.handleEditingItem} />;
             buttonText = "Return to inventory";
         } else if (this.state.selectedItem != null) {
-            currentlyVisibleState = <ItemDetail item={this.state.selectedItem} onClickingDelete={this.handleDeletingItem} onClickingEdit={this.handleEditClick} />
+            currentlyVisibleState =
+                <ItemDetail
+                    item={this.state.selectedItem}
+                    onClickingDelete={this.handleDeletingItem}
+                    onClickingEdit={this.handleEditClick} />;
             buttonText = "Return to inventory";
         } else if (this.state.newItemForm) {
             currentlyVisibleState = <NewItemForm onNewItemCreation={this.handleAddingItem} />;
             buttonText = "Return to inventory";
         } else {
-            currentlyVisibleState = <Inventory itemList={this.state.mainItemList} onItemSelection={this.handleSelectedItem} />;
-            buttonText = "Add Item"
+            currentlyVisibleState =
+                <Inventory
+                    itemList={this.state.mainItemList}
+                    onItemSelection={this.handleSelectedItem} />;
+            buttonText = "Add Item";
         }
         return (
             <React.Fragment>
