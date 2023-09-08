@@ -40,6 +40,21 @@ class Store extends React.Component {
         this.setState({ selectedItem: selectedItem });
     }
 
+    handleSellingItem = (id) => {
+        const soldItem = this.state.mainItemList[this.state.mainItemList.findIndex(item => item.id === id)];
+        if (soldItem.quantity === 1 || soldItem.quantity === "sold out") {
+            soldItem.quantity = "sold out";
+        } else {
+            soldItem.quantity -= 1;
+        }
+        const soldItemList = this.state.mainItemList
+            .filter(item => item.id !== this.state.mainItemList.id)
+            .concat(soldItem);
+        this.setState({
+            mainItemList: soldItemList
+        });
+    }
+
     handleEditClick = () => {
         this.setState({ editItemForm: true });
     }
@@ -77,7 +92,8 @@ class Store extends React.Component {
                 <ItemDetail
                     item={this.state.selectedItem}
                     onClickingDelete={this.handleDeletingItem}
-                    onClickingEdit={this.handleEditClick} />;
+                    onClickingEdit={this.handleEditClick}
+                    onClickingSell={this.handleSellingItem} />;
             buttonText = "Return to inventory";
         } else if (this.state.newItemForm) {
             currentlyVisibleState = <NewItemForm onNewItemCreation={this.handleAddingItem} />;
