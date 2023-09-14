@@ -48,8 +48,7 @@ class Store extends React.Component {
             soldItem.quantity -= 1;
         }
         const soldItemList = this.state.mainItemList
-            .filter(item => item.id !== this.state.mainItemList.id)
-            .concat(soldItem);
+            .filter(item => item.id !== this.state.mainItemList.id);
         this.setState({
             mainItemList: soldItemList
         });
@@ -60,11 +59,11 @@ class Store extends React.Component {
     }
 
     handleEditingItem = (itemToEdit) => {
-        const editedMainItemList = this.state.mainItemList
-            .filter(item => item.id !== this.state.selectedItem.id)
-            .concat(itemToEdit);
+        const editedItem = this.state.mainItemList.findIndex(item => item.id === this.state.selectedItem.id);
+        const editItemList = [...this.state.mainItemList]
+        editItemList[editedItem] = itemToEdit
         this.setState({
-            mainItemList: editedMainItemList,
+            mainItemList: editItemList,
             editItemForm: false,
             selectedItem: null
         });

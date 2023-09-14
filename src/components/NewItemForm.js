@@ -10,8 +10,8 @@ function NewItemForm(props) {
         props.onNewItemCreation({
             name: event.target.name.value,
             description: event.target.description.value,
-            quantity: parseInt(event.target.quantity.value),
-            price: parseInt(event.target.price.value),
+            quantity: parseFloat(event.target.quantity.value),
+            price: parseFloat(event.target.price.value),
             id: v4()
         });
     }
